@@ -56,15 +56,107 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="RF7-MR-VRb">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cGt-ze-4aF"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cGt-ze-4aF">
+                            <connections>
+                                <segue destination="w6G-do-jUY" kind="show" id="EgF-Wa-9OI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="zM6-gB-EQj" id="GhZ-Ql-voe"/>
+                        <segue destination="w6G-do-jUY" kind="show" identifier="cellSegue" id="hg2-In-NMb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="112.5"/>
+        </scene>
+        <!--Input View Controller-->
+        <scene sceneID="DEr-G1-qLl">
+            <objects>
+                <viewController id="w6G-do-jUY" customClass="InputViewController" customModule="taskapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pzZ-t5-5zz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IDS-Db-2oe">
+                                <rect key="frame" x="10" y="129" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnA-DB-ySL">
+                                <rect key="frame" x="10" y="173" width="394" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZfC-Ng-pcf">
+                                <rect key="frame" x="10" y="204" width="394" height="120"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="pmr-qY-ZiL"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="IXC-xM-ZJa">
+                                <rect key="frame" x="0.0" y="334" width="414" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="lO4-sy-fid"/>
+                                    <constraint firstAttribute="height" constant="120" id="mpH-aF-oKI"/>
+                                </constraints>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2v2-Rd-JB1">
+                                <rect key="frame" x="10" y="98" width="394" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="2v2-Rd-JB1" firstAttribute="top" secondItem="PvU-GB-jhs" secondAttribute="top" constant="10" id="2G1-Uy-vXO"/>
+                            <constraint firstItem="2v2-Rd-JB1" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="49f-fV-duA"/>
+                            <constraint firstItem="2v2-Rd-JB1" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="85l-0Z-BSd"/>
+                            <constraint firstItem="IDS-Db-2oe" firstAttribute="top" secondItem="2v2-Rd-JB1" secondAttribute="bottom" constant="10" id="8Lk-Mx-e25"/>
+                            <constraint firstItem="CnA-DB-ySL" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="8ln-Rd-uM4"/>
+                            <constraint firstItem="2v2-Rd-JB1" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="AIx-ol-XHR"/>
+                            <constraint firstItem="ZfC-Ng-pcf" firstAttribute="top" secondItem="CnA-DB-ySL" secondAttribute="bottom" constant="10" id="C7y-15-IJ1"/>
+                            <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="CnA-DB-ySL" secondAttribute="trailing" constant="10" id="CJI-Bx-VpH"/>
+                            <constraint firstItem="IDS-Db-2oe" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="D6M-5R-oui"/>
+                            <constraint firstItem="IXC-xM-ZJa" firstAttribute="top" secondItem="ZfC-Ng-pcf" secondAttribute="bottom" constant="10" id="J8a-eL-w2r"/>
+                            <constraint firstItem="CnA-DB-ySL" firstAttribute="top" secondItem="IDS-Db-2oe" secondAttribute="bottom" constant="10" id="Qor-YC-sdc"/>
+                            <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="2v2-Rd-JB1" secondAttribute="trailing" constant="10" id="RdF-fL-qua"/>
+                            <constraint firstItem="2v2-Rd-JB1" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="UcM-n8-24w"/>
+                            <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="2v2-Rd-JB1" secondAttribute="trailing" constant="10" id="Y0j-l9-FuE"/>
+                            <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="2v2-Rd-JB1" secondAttribute="trailing" constant="10" id="Z8V-hi-4yM"/>
+                            <constraint firstItem="2v2-Rd-JB1" firstAttribute="top" secondItem="PvU-GB-jhs" secondAttribute="top" constant="10" id="ZO1-47-puc"/>
+                            <constraint firstItem="2v2-Rd-JB1" firstAttribute="top" secondItem="PvU-GB-jhs" secondAttribute="top" constant="10" id="aag-62-UuC"/>
+                            <constraint firstItem="2v2-Rd-JB1" firstAttribute="top" secondItem="PvU-GB-jhs" secondAttribute="top" constant="10" id="clF-Q4-Zi7"/>
+                            <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="ZfC-Ng-pcf" secondAttribute="trailing" constant="10" id="ddo-dk-kRp"/>
+                            <constraint firstItem="ZfC-Ng-pcf" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="kwH-D4-fy5"/>
+                            <constraint firstItem="2v2-Rd-JB1" firstAttribute="top" secondItem="PvU-GB-jhs" secondAttribute="top" constant="10" id="lx7-Be-Vua"/>
+                            <constraint firstItem="2v2-Rd-JB1" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="mXK-wM-v49"/>
+                            <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="2v2-Rd-JB1" secondAttribute="trailing" constant="10" id="oOJ-bK-FGS"/>
+                            <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="IDS-Db-2oe" secondAttribute="trailing" constant="10" id="pqf-1k-1mL"/>
+                            <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="2v2-Rd-JB1" secondAttribute="trailing" constant="10" id="ty8-24-RDE"/>
+                            <constraint firstAttribute="trailing" secondItem="IXC-xM-ZJa" secondAttribute="trailing" id="yWB-Oo-N3S"/>
+                            <constraint firstItem="IXC-xM-ZJa" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" id="zPp-Ys-qhE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PvU-GB-jhs"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XSl-Yu-iFv"/>
+                    <connections>
+                        <outlet property="contentsTextView" destination="ZfC-Ng-pcf" id="ijL-PH-yA3"/>
+                        <outlet property="datePicker" destination="IXC-xM-ZJa" id="bfk-nz-7d7"/>
+                        <outlet property="titleTextField" destination="IDS-Db-2oe" id="Wer-sD-bwC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k2a-zi-Tei" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2047.826086956522" y="108.48214285714285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NrV-SP-bBN">
@@ -85,4 +177,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="112.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="hg2-In-NMb"/>
+    </inferredMetricsTieBreakers>
 </document>
