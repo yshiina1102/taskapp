@@ -16,6 +16,8 @@ class InputViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    //Category追加 2020/4/21
+    @IBOutlet weak var categoryTextField: UITextField!
     
     let realm = try! Realm()    // 追加する
     var task: Task!   // 追加する
@@ -31,6 +33,7 @@ class InputViewController: UIViewController {
            titleTextField.text = task.title
            contentsTextView.text = task.contents
            datePicker.date = task.date
+           categoryTextField.text = task.category
        }
     // 追加する
     override func viewWillDisappear(_ animated: Bool) {
@@ -38,6 +41,8 @@ class InputViewController: UIViewController {
             self.task.title = self.titleTextField.text!
             self.task.contents = self.contentsTextView.text
             self.task.date = self.datePicker.date
+            //Category追加 2020/4/21
+            self.task.category = self.categoryTextField.text!
             self.realm.add(self.task, update: .modified)
         }
         setNotification(task: task)   // 追加

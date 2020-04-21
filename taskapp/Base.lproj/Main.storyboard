@@ -114,6 +114,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vp9-YA-DJE">
+                                <rect key="frame" x="10" y="464" width="394" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nOF-xh-SZg">
+                                <rect key="frame" x="10" y="495" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -122,14 +133,20 @@
                             <constraint firstItem="2v2-Rd-JB1" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="85l-0Z-BSd"/>
                             <constraint firstItem="IDS-Db-2oe" firstAttribute="top" secondItem="2v2-Rd-JB1" secondAttribute="bottom" constant="10" id="8Lk-Mx-e25"/>
                             <constraint firstItem="CnA-DB-ySL" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="8ln-Rd-uM4"/>
+                            <constraint firstItem="Vp9-YA-DJE" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="8wF-1a-eu1"/>
                             <constraint firstItem="2v2-Rd-JB1" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="AIx-ol-XHR"/>
+                            <constraint firstItem="Vp9-YA-DJE" firstAttribute="top" secondItem="IXC-xM-ZJa" secondAttribute="bottom" constant="10" id="Bvf-6P-Ic2"/>
+                            <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="nOF-xh-SZg" secondAttribute="trailing" constant="10" id="C61-wg-shD"/>
                             <constraint firstItem="ZfC-Ng-pcf" firstAttribute="top" secondItem="CnA-DB-ySL" secondAttribute="bottom" constant="10" id="C7y-15-IJ1"/>
                             <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="CnA-DB-ySL" secondAttribute="trailing" constant="10" id="CJI-Bx-VpH"/>
                             <constraint firstItem="IDS-Db-2oe" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="D6M-5R-oui"/>
                             <constraint firstItem="IXC-xM-ZJa" firstAttribute="top" secondItem="ZfC-Ng-pcf" secondAttribute="bottom" constant="10" id="J8a-eL-w2r"/>
+                            <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="Vp9-YA-DJE" secondAttribute="trailing" constant="10" id="Pnm-YU-B9F"/>
+                            <constraint firstItem="nOF-xh-SZg" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="QQK-Sn-lcW"/>
                             <constraint firstItem="CnA-DB-ySL" firstAttribute="top" secondItem="IDS-Db-2oe" secondAttribute="bottom" constant="10" id="Qor-YC-sdc"/>
                             <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="2v2-Rd-JB1" secondAttribute="trailing" constant="10" id="RdF-fL-qua"/>
                             <constraint firstItem="2v2-Rd-JB1" firstAttribute="leading" secondItem="PvU-GB-jhs" secondAttribute="leading" constant="10" id="UcM-n8-24w"/>
+                            <constraint firstItem="nOF-xh-SZg" firstAttribute="top" secondItem="Vp9-YA-DJE" secondAttribute="bottom" constant="10" id="W5W-Ee-6s5"/>
                             <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="2v2-Rd-JB1" secondAttribute="trailing" constant="10" id="Y0j-l9-FuE"/>
                             <constraint firstItem="PvU-GB-jhs" firstAttribute="trailing" secondItem="2v2-Rd-JB1" secondAttribute="trailing" constant="10" id="Z8V-hi-4yM"/>
                             <constraint firstItem="2v2-Rd-JB1" firstAttribute="top" secondItem="PvU-GB-jhs" secondAttribute="top" constant="10" id="ZO1-47-puc"/>
@@ -149,6 +166,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="XSl-Yu-iFv"/>
                     <connections>
+                        <outlet property="categoryTextField" destination="nOF-xh-SZg" id="NTK-mj-arT"/>
                         <outlet property="contentsTextView" destination="ZfC-Ng-pcf" id="ijL-PH-yA3"/>
                         <outlet property="datePicker" destination="IXC-xM-ZJa" id="bfk-nz-7d7"/>
                         <outlet property="titleTextField" destination="IDS-Db-2oe" id="Wer-sD-bwC"/>
