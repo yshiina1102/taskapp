@@ -48,6 +48,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         let dateString:String = formatter.string(from: task.date)
         cell.detailTextLabel?.text = dateString
+  
         // --- ここまで追加 ---
 
         return cell
