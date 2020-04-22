@@ -89,16 +89,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // 再利用可能な cell を得る
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        // Cellに値を設定する.  --- ここから ---
-        let task = taskArray[indexPath.row]
-        cell.textLabel?.text = task.title
+        if (searchActive) {
+            let task = filteredArray[indexPath.row]
+            cell.textLabel?.text = task.title
 
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
 
-        let dateString:String = formatter.string(from: task.date)
-        cell.detailTextLabel?.text = dateString
-        // --- ここまで追加 ---
+            let dateString:String = formatter.string(from: task.date)
+            cell.detailTextLabel?.text = dateString
+            
+            } else {
+            // Cellに値を設定する.  --- ここから ---
+            let task = taskArray[indexPath.row]
+            cell.textLabel?.text = task.title
+
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+            let dateString:String = formatter.string(from: task.date)
+            cell.detailTextLabel?.text = dateString
+            // --- ここまで追加 ---
+            }
 
         return cell
     }
@@ -160,10 +172,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //テキスト変更時の呼び出しメソッド
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredArray = realm.objects(Task.self).filter("category contains '\(searchBar.text!)'").sorted(byKeyPath: "date", ascending: false)
+        let predicate = NSPredicate(format: "category = %@", "\(searchBar.text!)")
+        filteredArray = realm.objects(Task.self).filter(predicate)
+
+        //filteredArray = realm.objects(Task.self).filter("category contains '\(searchBar.text!)'").sorted(byKeyPath: "date", ascending: false)
         //\(searchBar.text!)
         //テーブルを再読み込みする。
         tableView.reloadData()
+        print(filteredArray)
     }
 
 }
