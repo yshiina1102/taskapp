@@ -90,6 +90,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         if (searchActive) {
+            //検索時の画面
             let task = filteredArray[indexPath.row]
             cell.textLabel?.text = task.title
 
@@ -100,6 +101,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.detailTextLabel?.text = dateString
             
             } else {
+            //検索ではない場合の画面
             // Cellに値を設定する.  --- ここから ---
             let task = taskArray[indexPath.row]
             cell.textLabel?.text = task.title
@@ -179,7 +181,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //\(searchBar.text!)
         //テーブルを再読み込みする。
         tableView.reloadData()
-        print(filteredArray)
+        //デバッグ用
+        //print(filteredArray)
     }
 
 }
