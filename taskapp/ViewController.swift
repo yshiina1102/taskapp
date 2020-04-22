@@ -11,9 +11,10 @@ import RealmSwift   // ←追加
 import UserNotifications    // 追加
 
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     @IBOutlet weak var tableView: UITableView!
-    
+    //Seach機能用20200422
+    @IBOutlet weak var searchBar: UISearchBar!
     // Realmインスタンスを取得する
     let realm = try! Realm()  // ←追加
 
@@ -21,18 +22,67 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // 日付の近い順でソート：昇順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
     var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true)  // ←追加
+    //Seach機能用20200422
+    var searchActive : Bool = false
+    var filteredArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        //Seach機能用20200422
+        searchBar.delegate = self
+        //何も入力されていなくてもReturnキーを押せるようにする。
+        searchBar.enablesReturnKeyAutomatically = false
         }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // 入力画面から戻ってきた時に TableView を更新させる
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    // segue で画面遷移する時に呼ばれる
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        let inputViewController:InputViewController = segue.destination as! InputViewController
 
+        if segue.identifier == "cellSegue" {
+            let indexPath = self.tableView.indexPathForSelectedRow
+            inputViewController.task = taskArray[indexPath!.row]
+        } else {
+            let task = Task()
+            task.date = NSDate() as Date
+
+            let allTasks = realm.objects(Task.self)
+            if allTasks.count != 0 {
+                task.id = allTasks.max(ofProperty: "id")! + 1
+            }
+
+            inputViewController.task = task
+        }
+    }
+    
+    
     // データの数（＝セルの数）を返すメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskArray.count  // ←修正する
-    }
+        //return taskArray.count  // ←修正する
+        
+        //Seach機能用20200422
+
+            if(searchActive) {
+                return filteredArray.count
+            } else {
+                return taskArray.count
+            }
+        }
 
     // 各セルの内容を返すメソッド
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,7 +98,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         let dateString:String = formatter.string(from: task.date)
         cell.detailTextLabel?.text = dateString
-  
         // --- ここまで追加 ---
 
         return cell
@@ -91,28 +140,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         } // --- ここまで変更 ---
     }
-    // segue で画面遷移する時に呼ばれる
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        let inputViewController:InputViewController = segue.destination as! InputViewController
-
-        if segue.identifier == "cellSegue" {
-            let indexPath = self.tableView.indexPathForSelectedRow
-            inputViewController.task = taskArray[indexPath!.row]
-        } else {
-            let task = Task()
-
-            let allTasks = realm.objects(Task.self)
-            if allTasks.count != 0 {
-                task.id = allTasks.max(ofProperty: "id")! + 1
-            }
-
-            inputViewController.task = task
-        }
+    
+    //Seach機能用20200422
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true;
     }
-    // 入力画面から戻ってきた時に TableView を更新させる
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    //テキスト変更時の呼び出しメソッド
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredArray = realm.objects(Task.self).filter("category contains '\(searchBar.text!)'").sorted(byKeyPath: "date", ascending: false)
+        //\(searchBar.text!)
+        //テーブルを再読み込みする。
         tableView.reloadData()
     }
+
 }
 
